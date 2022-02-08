@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { ILink } from '../interface';
 
 @Schema()
 export class LinkEntity implements ILink {
