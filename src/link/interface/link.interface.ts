@@ -1,6 +1,7 @@
 export interface ILink {
-  link: string;
-  shortLink: string;
   id?: string;
   user: string;
+  title?: string;
+  link: string;
+  shortLink: string;
 }

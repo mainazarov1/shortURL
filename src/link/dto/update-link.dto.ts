@@ -5,13 +5,14 @@ export class UpdateLinkDto {
   @ApiPropertyOptional()
   id?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'Title of link',
     example: 'Link to image',
   })
   @IsNotEmpty()
   @Length(1, 30)
-  title: string;
+  title?: string;
+
 
   @ApiProperty({
     description: 'Link',
