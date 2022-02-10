@@ -32,9 +32,9 @@ export class LinkService {
     if (exist) {
       throw new ConflictException();
 		}
-    let shortLink = randomString.generate(7);
-		let { shortLink } = dto
-    console.log(shortLink);
+    // let shortLink = randomString.generate(7);
+		// let { shortLink } = dto
+    // console.log(shortLink);
     return await this.entity.create(dto);
   }
   async update(id: string, dto: UpdateLinkDto) {
