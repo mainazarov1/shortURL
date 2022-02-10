@@ -35,3 +35,4 @@ export class CreateLinkDto {
   @Length(5, 30)
   user: string;
 }
+

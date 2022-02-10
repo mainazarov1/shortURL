@@ -16,9 +16,15 @@ export class LinkEntity implements ILink {
   shortLink: string;
 
   @Prop({
-    type: Date,
+    type: String,
     required: true,
   })
   user: string;
+
+  @Prop({
+    type: String,
+    required: false,
+  })
+  title: string;
 }
 export const LinkSchema = SchemaFactory.createForClass(LinkEntity);
