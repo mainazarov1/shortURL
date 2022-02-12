@@ -16,7 +16,7 @@ export class LinkEntity implements ILink {
   shortLink: string;
 
   @Prop({
-    type: Date,
+    type: String,
     required: true,
   })
   user: string;

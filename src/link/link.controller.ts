@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+	Redirect,
 } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
@@ -22,16 +23,17 @@ import { LinkService } from './link.service';
 @Controller('link')
 export class LinkController {
   constructor(private readonly service: LinkService) {}
-  @Get()
+  @Get(':user')
   @ApiOkResponse({ type: [CreateLinkDto] })
-  async findAll() {
-    return await this.service.findAll();
+  async findAll(@Param('user') user: string) {
+    return await this.service.findAll(user);
   }
-  @Get(':id')
+	@Get(':shortLink')
+	// @Redirect('https://google.com')
   @ApiBadRequestResponse({ description: 'Validation issues' })
   @ApiNotFoundResponse()
-  async findOne(@Param() { id }: FindOneLinkDto) {
-    return await this.service.findOne(id);
+  async findOne(@Param('shortLink') shortLink: string) {
+    return await this.service.findOne(shortLink);
   }
   @Post()
   @ApiCreatedResponse({ type: CreateLinkDto })

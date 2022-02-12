@@ -1,4 +1,4 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiHideProperty, ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional, Length } from 'class-validator';
 
 export class CreateLinkDto {
@@ -19,13 +19,8 @@ export class CreateLinkDto {
   @Length(0, 200)
   link: string;
 
-  // @ApiPropertyOptional({
-  //   description: 'Short link',
-  //   example: 'https://www.google.com/search?q=gandon&sxsrf',
-  // })
-  // @IsOptional()
-  // @Length(0, 50)
-  // shortLink: string;
+  @ApiHideProperty()
+  shortLink?: string;
 
   @ApiProperty({
     description: 'User email',
