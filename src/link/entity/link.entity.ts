@@ -19,12 +19,15 @@ export class LinkEntity implements ILink {
     type: String,
     required: true,
   })
-  user: string;
+	user: string;
 
   @Prop({
     type: String,
     required: false,
   })
   title: string;
+  
+  @Prop({ type: Number, required: true, default: 0 })
+	count: number;
 }
 export const LinkSchema = SchemaFactory.createForClass(LinkEntity);
