@@ -1,5 +1,9 @@
-import { ApiHideProperty, ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsNotEmpty, IsOptional, Length } from 'class-validator';
+import {
+  ApiHideProperty,
+  ApiProperty,
+  ApiPropertyOptional,
+} from '@nestjs/swagger';
+import { IsNotEmpty, IsNumber, IsOptional, Length } from 'class-validator';
 
 export class CreateLinkDto {
   @ApiPropertyOptional({
@@ -28,5 +32,13 @@ export class CreateLinkDto {
   })
   @IsNotEmpty()
   @Length(5, 30)
-  user: string;
+	user: string;
+	
+	// @ApiPropertyOptional({
+  //   description: 'Title of link',
+  //   example: 'Link to image',
+  // })
+	@IsNumber()
+	@IsOptional()
+  count?: number;
 }

@@ -6,7 +6,8 @@ import {
   Param,
   Post,
   Put,
-	Redirect,
+	Res,
+  // Redirect,
 } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
@@ -16,9 +17,11 @@ import {
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
-
+import { Response } from 'express';
 import { CreateLinkDto, FindOneLinkDto, UpdateLinkDto } from './dto';
+import { FindLinkDto } from './dto/find-link.dto';
 import { LinkService } from './link.service';
+
 @ApiTags('Link')
 @Controller('link')
 export class LinkController {
@@ -27,13 +30,31 @@ export class LinkController {
   @ApiOkResponse({ type: [CreateLinkDto] })
   async findAll(@Param('user') user: string) {
     return await this.service.findAll(user);
-  }
-	@Get(':shortLink')
-	// @Redirect('https://google.com')
-  @ApiBadRequestResponse({ description: 'Validation issues' })
-  @ApiNotFoundResponse()
-  async findOne(@Param('shortLink') shortLink: string) {
-    return await this.service.findOne(shortLink);
+	};
+	// @Get('test')
+  // async test(@Res() res: Response) {
+  //   const url = 'https://bit.ly/3J6qqdn'
+  //   return res.redirect(url)
+  // }
+  // @Get(':shortLink')
+  // // @Redirect('https://google.com')
+  // @ApiBadRequestResponse({ description: 'Validation issues' })
+  // @ApiNotFoundResponse()
+  // async findOne(@Param('shortLink') shortLink: string) {
+  //   return await this.service.findOne(shortLink);
+  // }
+  @Get(':user/:shortLink')
+  // @Redirect('https://google.com')
+  // @ApiBadRequestResponse({ description: 'Validation issues' })
+  // @ApiNotFoundResponse()
+	async findLink(@Param() dto: FindLinkDto, @Res() res: Response) {
+		const obj = await this.service.findLink(dto);
+		if (obj) {
+			obj.count++;
+			obj.save();
+			return res.redirect(`${obj.link}`);
+		}
+    // return await this.service.findOne(shortLink);
   }
   @Post()
   @ApiCreatedResponse({ type: CreateLinkDto })
