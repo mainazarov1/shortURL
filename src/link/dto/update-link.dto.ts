@@ -25,15 +25,15 @@ export class UpdateLinkDto {
 
   @ApiProperty({
     description: 'Short link',
-    example: 'https://www.google.com/search?q=gandon&sxsrf',
-  })
-  @IsOptional()
+    example: 'https://www.google.com/gandxsrf',
+	})
+  @IsNotEmpty()
   @Length(0, 50)
   shortLink: string;
 
   @ApiProperty({
     description: 'User email',
-    example: 'example@gmail.com',
+    example: 'ivanovivan',
   })
   @IsNotEmpty()
   @Length(10, 30)
